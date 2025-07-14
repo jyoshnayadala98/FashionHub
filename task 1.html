@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion cloth store</title>
+</head>
+<style>
+  h1{
+    text-align: center;
+  }
+  h3{
+    text-align: center;
+  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color:rgb(252, 249, 249);
+    }
+
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #444;
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 20px 40px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      width: 50%;
+      height: 100px;
+      object-fit: fill;
+      border-radius: 5px;    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      color: #444;
+    }
+
+    .product p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .product button {
+      background-color:rgb(55, 134, 73);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: green;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+      text-align: center;
+text-align: center;
+
+    }
+</style>
+<body>
+    <h1 <center>Fashion Hub</center></h1><br>
+    <h3><center>Your style, Our passion</center></h3><br>
+    <nav>
+        <a href = "task1.html">Home</a>
+        <a href = "women.html">Women</a>
+        <a href = "men.html">Men</a>
+        <a href = "kids.html">Kids</a>
+        <a href = "contact.html">Contact us</a>
+        <a href ="cart.html">Cart</a>
+    </nav> 
+
+    <section id="men">
+        <h2>Men's Collection</h2>
+        <div class="product-grid">
+            <div class="product">
+              <h3>Casual shirt</h3>
+                <img src="download (5).jpeg " alt="Shirt">    
+            </div>
+            <div class="product">
+                <h3>Denim Jeans</h3>
+                <img src="download (6).jpeg" alt="Jeans">
+            </div>
+        </div>
+    </section>
+
+    <section id="women">
+        <h2>Women's Collection</h2>
+        <div class="product-grid">
+            <div class="product">
+               <h3>Kurti</h3>
+                <img src="download (7).jpeg" alt="kurti">
+            </div>
+            <div class="product">
+                <h3> Frocks </h3>
+                <img src="download (8).jpeg" alt="Frock">
+            </div>
+        </div>
+    </section>
+
+    <section id="kids">
+        <h2>Kid's Wear</h2>
+        <div class="product-grid">
+            <div class="product">
+              <h3>kids T-shirts</h3>
+                <img src="download (9).jpeg" alt="T-shirt">
+            </div>
+            <div class="product">
+                <h3>Kid's frock </h3>
+                <img src="download (10).jpeg" alt="frock">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+    <h2>Contact Us</h2>
+    <center><p style="text-align: center;">Email: fashion@gmail.com | Phone: 9643763892</p></center>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Fashion.All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart - Fashion Hub</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefefe;
+    }
+
+    header {
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #ffd700;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .cart-item-info p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .cart-item-info span {
+      font-weight: bold;
+      color: #222;
+    }
+
+    .cart-item-info button {
+      background-color: #ff69b4;
+      border: none;
+      padding: 5px 10px;
+      margin: 0 4px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+    }
+
+    .cart-item-info button:hover {
+      background-color: #ff1493;
+    }
+
+    .remove-btn {
+      background: #dc3545;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .remove-btn:hover {
+      background: #c82333;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .empty {
+      text-align: center;
+      font-size: 18px;
+      color: #888;
+      padding: 40px 10px;
+    }
+
+    .clear-cart {
+      display: block;
+      margin: 25px auto 0;
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .clear-cart:hover {
+      background-color: #b02a37;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cart-item img {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛍 Fashion Hub - Your Cart</h1>
+  <nav>
+        <a href = "task 1.html">Home</a>
+        <a href = "women.html">Women</a>
+        <a href = "men.html">Men</a>
+        <a href = "kids.html">Kids</a>
+        <a href = "contact.html">Contact us</a>
+        <a href ="cart.html">Cart</a>
+    </nav> 
+</header>
+
+<div class="cart-container" id="cartItems"></div>
+<button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+
+<footer>
+  © 2025 Fashion Hub. All rights reserved.
+</footer>
+
+<script>
+  const cartContainer = document.getElementById("cartItems");
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function updateCart() {
+    cartContainer.innerHTML = "";
+    if (cart.length === 0) {
+      cartContainer.innerHTML = '<div class="empty">👜 Your cart is empty.</div>';
+      document.querySelector('.clear-cart').style.display = 'none';
+      return;
+    } else {
+      document.querySelector('.clear-cart').style.display = 'block';
+    }
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+
+      const itemHTML = `
+        <div class="cart-item" data-index="${index}">
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="cart-item-info">
+            <h3>${item.name}</h3>
+            <p>Price: ₹${item.price}</p>
+            <p>
+              Quantity:
+              <button onclick="decrement(${index})">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="increment(${index})">+</button>
+            </p>
+            <p><strong>Total: ₹${itemTotal}</strong></p>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          </div>
+        </div>
+      `;
+      cartContainer.innerHTML += itemHTML;
+    });
+
+    cartContainer.innerHTML += <div class="total">Grand Total: ₹${total}</div>;
+  }
+
+  function increment(index) {
+    cart[index].quantity += 1;
+    saveCart();
+    updateCart();
+  }
+
+  function decrement(index) {
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      removeItem(index);
+    }
+    saveCart();
+    updateCart();
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCart();
+  }
+
+  function clearCart() {
+    if (confirm("Are you sure you want to clear your cart?")) {
+      cart = [];
+      saveCart();
+      updateCart();
+    }
+  }
+
+  updateCart(); // Initial load
+</script>
+
+</body>
+</html>

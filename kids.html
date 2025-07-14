@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kid's Collection</title>
+  <style>
+    body { background-color: #ffffe0; font-family: Arial, sans-serif; }
+    nav { background: #444; text-align: center; padding: 10px; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    h2 { text-align: center; color: #ffa500; }
+    .product { text-align: center; margin: 20px; border: 1px solid #ccc; border-radius: 10px; padding: 10px; background: white; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="task 1.html">Home</a>
+    <a href="women.html">Women</a>
+    <a href="men.html">Men</a>
+    <a href="kids.html">Kids</a>
+    <a href="contact.html">Contact us</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+
+  <h2>Kid's Collection</h2>
+
+  <div class="product">
+    <h3>Kid's T-shirt</h3>
+    <img src="download (9).jpeg" width="200">
+    <p>₹359/-</p>
+    <button onclick="addToCart('Kid\'s T-shirt', 359)">Buy Now</button>
+  </div>
+
+  <div class="product">
+    <h3>Kid's Frock</h3>
+    <img src="download (10).jpeg" width="200">
+    <p>₹799/-</p>
+    <button onclick="addToCart('Kid\'s Frock', 799)">Buy Now</button>
+  </div>
+
+  <script>
+    function addToCart(productName, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name: productName, price: price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(productName + " added to cart!");
+    }
+  </script>
+</body>
+</html>
